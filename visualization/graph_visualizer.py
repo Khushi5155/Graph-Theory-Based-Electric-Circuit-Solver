@@ -1,7 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-
 def load_circuit(file_path):
 
     edges = []
@@ -41,7 +40,7 @@ def draw_circuit(edges, labels):
     for edge in edges:
         G.add_edge(edge[0], edge[1])
 
-    pos = nx.spring_layout(G)
+    pos = nx.kamada_kawai_layout(G)
 
     nx.draw(
         G,

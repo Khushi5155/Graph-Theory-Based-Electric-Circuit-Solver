@@ -75,15 +75,76 @@ Graph_Circuit_Solver
 
 ---
 
-## Input Format
+## Quick Start
 
-Circuit elements are defined in a simple text format:
+Follow these steps to set up and run the project on your system.
+
+---
+
+### 1. Prerequisites
+
+Make sure you have the following installed:
+
+* **Python (3.9 or above)**
+  Download: https://www.python.org
+
+* **Git (optional, for version control)**
+  Download: https://git-scm.com
+
+---
+
+### 2. Clone or Download the Project
+
+If using Git:
 
 ```
-Component Node1 Node2 Value
+git clone <your-repo-link>
+cd Graph_Circuit_Solver
 ```
 
-Example:
+Or manually download and open the folder in your system.
+
+---
+
+### 3. Create Virtual Environment (Recommended)
+
+```
+python -m venv venv
+```
+
+Activate it:
+
+* **Windows:**
+
+```
+venv\Scripts\activate
+```
+
+* **Mac/Linux:**
+
+```
+source venv/bin/activate
+```
+
+---
+
+### 4. Install Required Libraries
+
+```
+pip install networkx matplotlib streamlit numpy scipy
+```
+
+---
+
+### 5. Add Sample Circuit Input
+
+Open:
+
+```
+data/sample_circuit.txt
+```
+
+Add:
 
 ```
 R1 1 2 10
