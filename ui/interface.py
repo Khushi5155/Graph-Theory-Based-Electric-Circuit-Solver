@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+from solver_placeholder.dummy_solver import get_dummy_solution
 
 # Import your visualization function
 from visualization.graph_visualizer import load_circuit, draw_circuit
@@ -37,13 +38,25 @@ if st.button("Visualize Circuit"):
     try:
         edges, labels = load_circuit(file_path)
 
-        st.write("### Circuit Graph Generated")
+        st.write("### Circuit Graph Generated ")
 
         fig = draw_circuit(edges, labels)
+        st.pyplot(fig)
 
-        st.pyplot(fig)   # show inside UI
+        # Get dummy results
+        node_voltages, branch_currents = get_dummy_solution(edges)
 
-        st.success("Visualization complete!")
+        # 🔹 Display Node Voltages
+        st.subheader("Node Voltages")
+        for node, voltage in node_voltages.items():
+            st.write(f"V{node} = {voltage} V")
+
+        # 🔹 Display Branch Currents
+        st.subheader("Branch Currents")
+        for branch, current in branch_currents.items():
+            st.write(f"{branch} = {current} A")
+
+        st.success("Visualization + Results complete!")
 
     except Exception as e:
         st.error(f"Error: {e}")
