@@ -36,4 +36,26 @@ def compute_branch_currents(node_voltages, edges):
             branch_currents[name] = float(current)
 
     return branch_currents
-       
+
+def run_solver(G, I, node_mapping, edges):
+    """
+    Main solver pipeline
+    """
+
+    # Step 1: Solve matrix
+    V = solve_matrix(G, I)
+
+    if V is None:
+        return {"error": "Matrix solve failed"}
+
+    # Step 2: Node voltages
+    node_voltages = compute_node_voltages(V, node_mapping)
+
+    # Step 3: Branch currents
+    branch_currents = compute_branch_currents(node_voltages, edges)
+
+    return {
+        "node_voltages": node_voltages,
+        "branch_currents": branch_currents
+    }
+    
