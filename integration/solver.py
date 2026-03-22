@@ -27,12 +27,18 @@ def compute_branch_currents(node_voltages, edges):
     branch_currents = {}
 
     for comp in edges:
+
+        # SAFETY CHECK
+        if len(comp) != 4:
+            print("Skipping invalid edge:", comp)
+            continue
+
         name, n1, n2, value = comp
 
-        if name.startswith('R'):  # resistor
+        if name.startswith('R'):
 
             if value == 0:
-                continue  # avoid division error
+                continue
 
             v1 = node_voltages.get(n1, 0)
             v2 = node_voltages.get(n2, 0)
@@ -41,7 +47,6 @@ def compute_branch_currents(node_voltages, edges):
             branch_currents[name] = round(float(current), 4)
 
     return branch_currents
-
 
 def run_solver(G, I, node_mapping, edges):
     """
